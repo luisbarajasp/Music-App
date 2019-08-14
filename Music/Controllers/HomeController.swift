@@ -9,6 +9,8 @@
 import UIKit
 
 class HomeController: UIViewController {
+    
+    var homeNavigationBar: HomeNavigationBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,12 @@ class HomeController: UIViewController {
     }
     
     func setUpViews() {
+        view.backgroundColor = .white
+        homeNavigationBar = HomeNavigationBar()
+        
+        view.addSubview(homeNavigationBar)
+        homeNavigationBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        // homeNavigationBar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
     }
 
