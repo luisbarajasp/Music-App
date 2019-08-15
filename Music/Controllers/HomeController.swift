@@ -10,8 +10,8 @@ import UIKit
 
 class HomeController: UIViewController {
     
-    lazy var homeNavigationView: HomeNavigationView = {
-        let view = HomeNavigationView()
+    lazy var homeView: HomeView = {
+        let view = HomeView()
         view.controller = self
         return view
     }()
@@ -27,15 +27,15 @@ class HomeController: UIViewController {
     func setUpViews() {
         view.backgroundColor = .white
         
-        view.addSubview(homeNavigationView)
-        homeNavigationView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor)
-        // homeNavigationBar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(homeView)
+        homeView.fillSuperview()
+        
         
     }
     
     // MARK: - Callback methods
-    func navigateToSearch() {
-        if let query = homeNavigationView.searchTextField.text {
+    func navigateToSearch(searchQuery: String?) {
+        if let query = searchQuery {
             let searchController = SearchController()
             searchController.query = query
             navigationController?.pushViewController(searchController, animated: true)

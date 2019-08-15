@@ -8,24 +8,15 @@
 
 import UIKit
 
-class HomeNavigationView: UIView, UITextFieldDelegate {
+class HomeCollectionHeaderCell: UICollectionReusableView, UITextFieldDelegate {
     
     var controller: HomeController!
-    
-    let welcomeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
-        label.text = "Welcome to Music!"
-        label.sizeToFit()
-        
-        return label
-    }()
     
     lazy var searchTextField: UITextField = {
         let tf = UITextField()
         
         tf.textColor = .black
-        tf.font = UIFont.systemFont(ofSize: 22)
+        tf.font = UIFont.systemFont(ofSize: 24)
         tf.contentVerticalAlignment = .center
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.returnKeyType = .done
@@ -36,7 +27,7 @@ class HomeNavigationView: UIView, UITextFieldDelegate {
         
         tf.sizeToFit()
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 25))
         imageView.image = UIImage(named: "search")
         imageView.contentMode = .scaleAspectFit
         tf.leftView = imageView
@@ -56,19 +47,16 @@ class HomeNavigationView: UIView, UITextFieldDelegate {
     }
     
     func setUpViews() {
-        addSubview(welcomeLabel)
-        welcomeLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 50, left: 20, bottom: 0, right: 20))
-        
+        backgroundColor = .white
         addSubview(searchTextField)
-        searchTextField.anchor(top: welcomeLabel.bottomAnchor, leading: welcomeLabel.leadingAnchor, bottom: bottomAnchor, trailing: welcomeLabel.trailingAnchor, padding: UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0))
-        
+        searchTextField.fillSuperview()
         
     }
     
     // MARK: - TextField Delegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        controller.navigateToSearch()
+        controller.navigateToSearch(searchQuery: searchTextField.text)
         return false
     }
 }
