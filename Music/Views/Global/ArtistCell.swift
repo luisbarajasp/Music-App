@@ -10,6 +10,17 @@ import UIKit
 
 class ArtistCell: UICollectionViewCell {
     
+    var artist: Artist? {
+        didSet {
+            nameLabel.text = artist?.name
+            genreLabel.text = artist?.genre
+            
+            if let url = artist?.imageUrl {
+                self.imageView.loadImageUsingCacheWithURLString(url, placeHolder: UIImage(named: "art1"))
+            }
+        }
+    }
+    
     let cornerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
@@ -46,6 +57,14 @@ class ArtistCell: UICollectionViewCell {
         return label
     }()
     
+    let genreLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        label.sizeToFit()
+        label.numberOfLines = 1
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -67,5 +86,8 @@ class ArtistCell: UICollectionViewCell {
         
         cornerView.addSubview(nameLabel)
         nameLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 30, right: 30))
+        
+        cornerView.addSubview(genreLabel)
+        genreLabel.anchor(top: nil, leading: leadingAnchor, bottom: nameLabel.topAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 10, right: 30))
     }
 }

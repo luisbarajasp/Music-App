@@ -114,6 +114,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
+        cell.genreLabel.text = "Rock"
         cell.nameLabel.text = "Luis Barakas"
         cell.imageView.image = UIImage(named: "art1")
         
