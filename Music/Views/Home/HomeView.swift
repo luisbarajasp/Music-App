@@ -42,22 +42,22 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 20
+        layout.minimumInteritemSpacing = 20
         layout.sectionHeadersPinToVisibleBounds = true
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
         cv.showsHorizontalScrollIndicator = false
         cv.showsVerticalScrollIndicator = false
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        cv.register(ArtistCell.self, forCellWithReuseIdentifier: cellId)
         cv.register(HomeCollectionHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         cv.showsVerticalScrollIndicator = false
         cv.backgroundColor = .white
         cv.isPagingEnabled = false
         cv.sizeToFit()
         cv.isScrollEnabled = true
-        cv.contentInset = UIEdgeInsets(top: 100, left: 16, bottom: 0, right: 16)
+        cv.contentInset = UIEdgeInsets(top: 100, left: 6, bottom: 0, right: 6)
         
         return cv
     }()
@@ -112,9 +112,10 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
-        cell.backgroundColor = .red
+        cell.nameLabel.text = "Luis Barakas"
+        cell.imageView.image = UIImage(named: "art1")
         
         return cell
     }
