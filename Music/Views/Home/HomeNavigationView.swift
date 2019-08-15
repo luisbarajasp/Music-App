@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HomeNavigationBar: UIView, UITextFieldDelegate {
+class HomeNavigationView: UIView, UITextFieldDelegate {
+    
+    var controller: HomeController!
     
     let welcomeLabel: UILabel = {
         let label = UILabel()
@@ -30,6 +32,7 @@ class HomeNavigationBar: UIView, UITextFieldDelegate {
         tf.delegate = self
         tf.placeholder = "Search for artists..."
         tf.clearButtonMode = .always
+        tf.returnKeyType = .search
         
         tf.sizeToFit()
         
@@ -38,7 +41,6 @@ class HomeNavigationBar: UIView, UITextFieldDelegate {
         imageView.contentMode = .scaleAspectFit
         tf.leftView = imageView
         tf.leftViewMode = .always
-        
         
         
         return tf
@@ -66,6 +68,7 @@ class HomeNavigationBar: UIView, UITextFieldDelegate {
     // MARK: - TextField Delegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        controller.navigateToSearch()
         return false
     }
 }
