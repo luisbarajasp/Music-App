@@ -35,7 +35,7 @@ class HomeController: UIViewController {
     
     // MARK: - Callback methods
     func navigateToSearch(searchQuery: String?) {
-        if let query = searchQuery {
+        if let query = searchQuery, query != "" {
             let searchController = SearchController()
             searchController.query = query
             navigationController?.pushViewController(searchController, animated: true)

@@ -30,6 +30,12 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         return label
     }()
     
+    let statusBarBackgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     let cellId = "cellId"
     
     let headerId = "headerId"
@@ -56,6 +62,9 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         return cv
     }()
     
+    var browseLabelTop: NSLayoutConstraint!
+    var popularLabelTop: NSLayoutConstraint!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -71,10 +80,25 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         collectionView.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor)
         
         addSubview(browseLabel)
-        browseLabel.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 50, left: 20, bottom: 0, right: 20), size: CGSize(width: 0, height: 35))
+        browseLabel.anchor(top: nil, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20), size: CGSize(width: 0, height: 35))
+        
+        // 50 normal
+        browseLabelTop = browseLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50)
+        browseLabelTop.isActive = true
         
         addSubview(popularLabel)
-        popularLabel.anchor(top: browseLabel.bottomAnchor, leading: browseLabel.leadingAnchor, bottom: nil, trailing: browseLabel.trailingAnchor, padding: UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: 30))
+        popularLabel.anchor(top: nil, leading: browseLabel.leadingAnchor, bottom: nil, trailing: browseLabel.trailingAnchor, size: CGSize(width: 0, height: 30))
+        
+        // 165 normal
+        popularLabelTop = popularLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 165)
+        popularLabelTop.isActive = true
+        
+        
+        
+        addSubview(statusBarBackgroundView)
+        statusBarBackgroundView.anchor(top: topAnchor, leading: leadingAnchor, bottom: safeAreaLayoutGuide.topAnchor, trailing: trailingAnchor)
+        
+        
     }
     
     // MARK: - Collection View Methods
@@ -127,7 +151,26 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         if (scrollView.contentOffset.y >= 0 ) {
             scrollView.contentInset = UIEdgeInsets.zero
+            
+            if (scrollView.contentOffset.y >= 30 ) {
+                browseLabelTop.constant = -50
+                popularLabelTop.constant = -50
+            } else {
+                // browseLabel topAnchor
+                browseLabelTop.constant = -scrollView.contentOffset.y - 50
+                
+                // popularLabel topAnchor
+                popularLabelTop.constant = browseLabelTop.constant + 115
+            }
+            
         }else{
+            // browseLabel topAnchor
+            browseLabelTop.constant = -scrollView.contentOffset.y - 50
+            
+            // popularLabel topAnchor
+            popularLabelTop.constant = browseLabelTop.constant + 115
+            
+            // collectionview content inset
             scrollView.contentInset = UIEdgeInsets(top: min(-scrollView.contentOffset.y, 100), left: 0, bottom: 0, right: 0)
         }
     }
