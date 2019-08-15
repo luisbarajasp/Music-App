@@ -13,14 +13,18 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Song" representedClassName=".Song" syncable="YES">
+        <attribute name="collectionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="previewDuration" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="previewUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="artist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="songs" inverseEntity="Artist" syncable="YES"/>
     </entity>
     <elements>
         <element name="Artist" positionX="-388.05859375" positionY="30.59375" width="128" height="118"/>
-        <element name="Song" positionX="-54" positionY="18" width="128" height="118"/>
+        <element name="Song" positionX="-54" positionY="18" width="128" height="180"/>
     </elements>
 </model>

@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.rootViewController = navigationController
         }
         
+        // Print location of db
+        CoreDataStack.sharedInstance.applicationDocumentsDirectory()
+        
         return true
     }
 

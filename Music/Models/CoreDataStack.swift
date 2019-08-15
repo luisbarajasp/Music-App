@@ -56,6 +56,13 @@ class CoreDataStack: NSObject {
         }
     }
     
+    // See where is located the db in the simulator
+    func applicationDocumentsDirectory() {
+        if let url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).last {
+            print(url.absoluteString)
+        }
+    }
+    
     // MARK: - Core Data Singleton
     
     static let sharedInstance = CoreDataStack()

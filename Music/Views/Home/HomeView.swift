@@ -12,6 +12,12 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     var controller: HomeController!
     
+    var artists: [Artist] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     let browseLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
@@ -108,15 +114,18 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return artists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
-        cell.genreLabel.text = "Rock"
-        cell.nameLabel.text = "Luis Barakas"
-        cell.imageView.image = UIImage(named: "art1")
+//        cell.imageView.image = UIImage(named: "art1")
+        
+//        cell.genreLabel.text = artists[indexPath.row].genre
+//        cell.nameLabel.text = artists[indexPath.row].name
+        
+        cell.artist = artists[indexPath.row]
         
         return cell
     }

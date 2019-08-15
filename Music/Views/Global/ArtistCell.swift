@@ -15,8 +15,10 @@ class ArtistCell: UICollectionViewCell {
             nameLabel.text = artist?.name
             genreLabel.text = artist?.genre
             
-            if let url = artist?.imageUrl {
+            if let song = artist?.songs?.anyObject() as? Song, let url = song.imageUrl {
                 self.imageView.loadImageUsingCacheWithURLString(url, placeHolder: UIImage(named: "art1"))
+            }else{
+                self.imageView.image = UIImage(named: "art2")
             }
         }
     }

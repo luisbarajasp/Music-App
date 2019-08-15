@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeController: UIViewController {
     
@@ -15,10 +16,15 @@ class HomeController: UIViewController {
         view.controller = self
         return view
     }()
+    
+    let service = APIService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        clearArtists()
+        clearSongs()
         
         setUpViews()
         fetchArtists()
@@ -35,11 +41,11 @@ class HomeController: UIViewController {
     
     // MARK: - Fetch Artists
     
-    func fetchArtists() {
-        let service = APIService()
-        service.fetchArtists(with: "search?media=music&entity=musicArtist&limit=20&term=ma", completion: { (artists) in
+    func fetchArtists(with term: String = "ma") {
+        service.fetchArtists(with: "search?media=music&entity=musicArtist&limit=20&term=\(term)", completion: { (artists) in
             if artists != nil {
-                print(artists)
+//                print(artists)
+                self.homeView.artists = artists!
             }
         })
     }
@@ -60,10 +66,46 @@ class HomeController: UIViewController {
         if let query = searchQuery, query != "" {
             let searchController = SearchController()
             searchController.query = query
-            navigationController?.pushViewController(searchController, animated: true)
+            
+            service.fetchArtists(with: "search?media=music&entity=musicArtist&limit=20&term=\(query)", completion: { (artists) in
+                if artists != nil, artists!.count > 0 {
+                    searchController.artists = artists!
+                    self.navigationController?.pushViewController(searchController, animated: true)
+                } else {
+                    self.showAlertWith(title: "No results", message: "No artists were found with that name, try another.")
+                }
+            })
+            
         }
     }
 
-
+    // MARK: - clearData from CoreData for debugging
+    private func clearArtists() {
+        do {
+            let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Artist")
+            do {
+                let objects  = try context.fetch(fetchRequest) as? [NSManagedObject]
+                _ = objects.map{$0.map{context.delete($0)}}
+                CoreDataStack.sharedInstance.saveContext()
+            } catch let error {
+                print("ERROR DELETING : \(error)")
+            }
+        }
+    }
+    
+    private func clearSongs() {
+        do {
+            let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Song")
+            do {
+                let objects  = try context.fetch(fetchRequest) as? [NSManagedObject]
+                _ = objects.map{$0.map{context.delete($0)}}
+                CoreDataStack.sharedInstance.saveContext()
+            } catch let error {
+                print("ERROR DELETING : \(error)")
+            }
+        }
+    }
 }
 

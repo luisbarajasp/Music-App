@@ -10,6 +10,12 @@ import UIKit
 
 class SearchController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var artists: [Artist] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     var query: String = "" {
         didSet {
             searchNavigationView.query = query
@@ -67,13 +73,16 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return artists.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
-        cell.nameLabel.text = "Luis Barakas"
+        cell.imageView.image = UIImage(named: "art1")
+        
+        cell.genreLabel.text = artists[indexPath.row].genre
+        cell.nameLabel.text = artists[indexPath.row].name
         
         return cell
     }
