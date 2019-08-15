@@ -23,9 +23,6 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        clearArtists()
-        clearSongs()
-        
         setUpViews()
         fetchArtists()
     }
@@ -76,6 +73,23 @@ class HomeController: UIViewController {
                 }
             })
             
+        }
+    }
+    
+    func navigateToArtist(artist: Artist?, backgroundColor: UIColor = .white) {
+        if let a = artist {
+            let artistController = ArtistController()
+            artistController.artist = a
+            artistController.artistColor = backgroundColor
+            
+            print(a)
+            
+            service.fetchSongs(addTo: a, with: "lookup?id=\(a.id!)&entity=song&limit=20", completion: { (songs) in
+                if songs != nil {
+                    artistController.songs = songs!
+                    self.navigationController?.pushViewController(artistController, animated: true)
+                }
+            })
         }
     }
 

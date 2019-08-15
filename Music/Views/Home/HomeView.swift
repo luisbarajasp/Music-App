@@ -18,6 +18,9 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         }
     }
     
+    var bgColors = [240, 120, 160]
+    // 140 100 240
+    
     let browseLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 32, weight: .medium)
@@ -127,6 +130,23 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         cell.artist = artists[indexPath.row]
         
+        // apply background to cell
+        /*let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 145, green: 97, blue: 250).cgColor, UIColor(red: 100, green: 77, blue: 200).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = cell.cornerView.bounds
+        gradientLayer.borderWidth = cell.cornerView.layer.borderWidth
+        gradientLayer.cornerRadius = cell.cornerView.layer.cornerRadius
+        
+        cell.cornerView.layer.insertSublayer(gradientLayer, at: 0)*/
+        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
+        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
+        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
+        
+        cell.cornerView.backgroundColor = UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
+        
         return cell
     }
     
@@ -154,6 +174,15 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width - 32, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
+        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
+        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
+        
+        controller.navigateToArtist(artist: artists[indexPath.row], backgroundColor: UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1))
     }
     
     // MARK: - ScrollView DidScroll

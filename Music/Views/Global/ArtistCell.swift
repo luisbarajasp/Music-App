@@ -18,7 +18,7 @@ class ArtistCell: UICollectionViewCell {
             if let song = artist?.songs?.anyObject() as? Song, let url = song.imageUrl {
                 self.imageView.loadImageUsingCacheWithURLString(url, placeHolder: UIImage(named: "art1"))
             }else{
-                self.imageView.image = UIImage(named: "art2")
+                self.imageView.image = UIImage(named: "art1")
             }
         }
     }
@@ -48,6 +48,10 @@ class ArtistCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.layer.cornerRadius = 50
+        iv.layer.masksToBounds = true
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -84,7 +88,10 @@ class ArtistCell: UICollectionViewCell {
         cornerView.fillSuperview()
         
         cornerView.addSubview(imageView)
-        imageView.fillSuperview()
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 80).isActive = true
         
         cornerView.addSubview(nameLabel)
         nameLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 30, right: 30))

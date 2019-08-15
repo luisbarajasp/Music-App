@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5FE0259873CFC1C4CD5E4518 /* Pods_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB11F5605C3172DCB280D522 /* Pods_Music.framework */; };
+		A09C2EA723060354005EF4DE /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C2EA623060354005EF4DE /* SongCell.swift */; };
+		A0B548D72305F2E9009B1637 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B548D62305F2E9009B1637 /* ArtistController.swift */; };
+		A0B548DB2305F561009B1637 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B548DA2305F561009B1637 /* ArtistView.swift */; };
 		A0C8D53E2304B3C9002BAA79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8D53D2304B3C9002BAA79 /* AppDelegate.swift */; };
 		A0C8D5402304B3C9002BAA79 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8D53F2304B3C9002BAA79 /* HomeController.swift */; };
 		A0C8D5432304B3C9002BAA79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0C8D5412304B3C9002BAA79 /* Main.storyboard */; };
@@ -30,6 +33,9 @@
 
 /* Begin PBXFileReference section */
 		86FA1866AB5C981284F0D6AD /* Pods-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music/Pods-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		A09C2EA623060354005EF4DE /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		A0B548D62305F2E9009B1637 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
+		A0B548DA2305F561009B1637 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
 		A0C8D53A2304B3C9002BAA79 /* Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C8D53D2304B3C9002BAA79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0C8D53F2304B3C9002BAA79 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,15 @@
 				CB11F5605C3172DCB280D522 /* Pods_Music.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A0B548D92305F550009B1637 /* Artist */ = {
+			isa = PBXGroup;
+			children = (
+				A0B548DA2305F561009B1637 /* ArtistView.swift */,
+				A09C2EA623060354005EF4DE /* SongCell.swift */,
+			);
+			path = Artist;
 			sourceTree = "<group>";
 		};
 		A0C8D5312304B3C9002BAA79 = {
@@ -123,6 +138,7 @@
 			children = (
 				A0C8D53F2304B3C9002BAA79 /* HomeController.swift */,
 				A0C8D55D2304D33E002BAA79 /* SearchController.swift */,
+				A0B548D62305F2E9009B1637 /* ArtistController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -142,6 +158,7 @@
 		A0C8D5572304B4BA002BAA79 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A0B548D92305F550009B1637 /* Artist */,
 				A0C8D5642305021D002BAA79 /* Global */,
 				A0C8D55F2304D364002BAA79 /* Search */,
 				A0C8D55A2304C174002BAA79 /* Home */,
@@ -313,6 +330,7 @@
 			files = (
 				A0C8D57823051583002BAA79 /* Song+CoreDataClass.swift in Sources */,
 				A0C8D56923050DCC002BAA79 /* APIService.swift in Sources */,
+				A0B548DB2305F561009B1637 /* ArtistView.swift in Sources */,
 				A0C8D55C2304C1AD002BAA79 /* HomeCollectionHeaderCell.swift in Sources */,
 				A0C8D5592304B5A2002BAA79 /* CoreDataStack.swift in Sources */,
 				A0C8D5402304B3C9002BAA79 /* HomeController.swift in Sources */,
@@ -323,8 +341,10 @@
 				A0C8D57923051583002BAA79 /* Song+CoreDataProperties.swift in Sources */,
 				A0C8D57623051583002BAA79 /* Artist+CoreDataClass.swift in Sources */,
 				A0C8D57723051583002BAA79 /* Artist+CoreDataProperties.swift in Sources */,
+				A0B548D72305F2E9009B1637 /* ArtistController.swift in Sources */,
 				A0C8D5542304B422002BAA79 /* Extensions.swift in Sources */,
 				A0C8D56623050229002BAA79 /* ArtistCell.swift in Sources */,
+				A09C2EA723060354005EF4DE /* SongCell.swift in Sources */,
 				A0C8D5612304D374002BAA79 /* SearchNavigationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

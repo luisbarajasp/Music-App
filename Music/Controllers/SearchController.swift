@@ -22,6 +22,10 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         }
     }
     
+    var bgColors = [90, 150, 210]
+    
+    let service = APIService()
+    
     lazy var searchNavigationView: SearchNavigationView = {
         let view = SearchNavigationView()
         view.controller = self
@@ -79,10 +83,13 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
-        cell.imageView.image = UIImage(named: "art1")
+        cell.artist = artists[indexPath.row]
         
-        cell.genreLabel.text = artists[indexPath.row].genre
-        cell.nameLabel.text = artists[indexPath.row].name
+        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
+        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
+        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
+        
+        cell.cornerView.backgroundColor = UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
         
         return cell
     }
@@ -91,11 +98,35 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         return CGSize(width: collectionView.bounds.width - 32, height: collectionView.bounds.width - 32)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
+        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
+        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
+        
+        navigateToArtist(artist: artists[indexPath.row], backgroundColor: UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1))
+    }
+    
     
     // MARK: - Callback methods
     
     func navigationBackPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func navigateToArtist(artist: Artist?, backgroundColor: UIColor = .white) {
+        if let a = artist {
+            let artistController = ArtistController()
+            artistController.artist = a
+            artistController.artistColor = backgroundColor
+            print(a)
+            service.fetchSongs(addTo: a, with: "lookup?id=\(a.id!)&entity=song&limit=20", completion: { (songs) in
+                if songs != nil {
+                    artistController.songs = songs!
+                    self.navigationController?.pushViewController(artistController, animated: true)
+                }
+            })
+            
+        }
     }
     
 }

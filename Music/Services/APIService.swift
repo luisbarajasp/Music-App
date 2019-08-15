@@ -119,7 +119,7 @@ class APIService: NSObject {
                 // Search for photo of first song to display
                 fetchSongs(addTo: artistEntity, with: "lookup?id=\(id)&entity=song&limit=1", completion: { (songs) in
                     if songs != nil, songs!.count > 0 {
-                        print(songs)
+//                        print(songs)
                         
                     }
                 })
