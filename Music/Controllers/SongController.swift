@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class SongController: UIViewController {
     
@@ -31,13 +32,48 @@ class SongController: UIViewController {
     }
     
     func setUpViews() {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 102, green: 214, blue: 115).cgColor, UIColor(red: 165, green: 209, blue: 168).cgColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = view.bounds
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
         view.addSubview(songView)
         songView.fillSuperview()
     }
     
     // MARK: - Callback methods
-    func setFav() {
+    func setSongFav() {
+        
+        let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Song")
+        let predicate = NSPredicate(format: "id == %@", song!.id!)
+        request.predicate = predicate
+        request.fetchLimit = 1
+        
+        do{
+            if let song = try context.fetch(request).first as? Song {
+                
+                song.setValue(!song.isFav, forKey: "isFav")
+                
+                try context.save()
+            }
+        }
+        catch let error as NSError {
+            print("Could not update \(error), \(error.userInfo)")
+        }
     }
+    
+    func closePressed() {
+        pause()
+        player = nil
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     // MARK: - Play song
     func play(urlString: String) {
@@ -55,7 +91,5 @@ class SongController: UIViewController {
         if let play = player {
             play.pause()
         }
-        player = nil
-        
     }
 }

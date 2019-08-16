@@ -101,8 +101,6 @@ class HomeController: UIViewController {
             let artistController = ArtistController()
             artistController.artist = a
             
-            print(a)
-            
             service.fetchSongs(addTo: a, with: "lookup?id=\(a.id!)&entity=song&limit=20", completion: { (songs) in
                 if songs != nil {
                     artistController.songs = songs!

@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Print location of db
-        CoreDataStack.sharedInstance.applicationDocumentsDirectory()
+//        CoreDataStack.sharedInstance.applicationDocumentsDirectory()
         
         return true
     }

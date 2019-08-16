@@ -121,7 +121,7 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         if let a = artist {
             let artistController = ArtistController()
             artistController.artist = a
-            print(a)
+            
             service.fetchSongs(addTo: a, with: "lookup?id=\(a.id!)&entity=song&limit=20", completion: { (songs) in
                 if songs != nil {
                     artistController.songs = songs!

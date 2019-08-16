@@ -52,6 +52,13 @@ class ArtistController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func navigateToSong(song: Song) {
+        let songController = SongController()
+        songController.song = song
+        
+        present(songController, animated: true, completion: nil)
+    }
+    
     func setSongFav(id: String, fav: Bool) {
         
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
