@@ -24,12 +24,6 @@ class ArtistController: UIViewController {
         }
     }
     
-    var artistColor: UIColor? {
-        didSet{
-            artistView.artistColor = artistColor!
-        }
-    }
-    
     lazy var artistView: ArtistView = {
         let view = ArtistView()
         view.controller = self
@@ -42,6 +36,14 @@ class ArtistController: UIViewController {
     }
     
     func setUpViews() {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 197, green: 203, blue: 216).cgColor, UIColor(red: 120, green: 150, blue: 211).cgColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = view.bounds
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
         view.addSubview(artistView)
         artistView.fillSuperview()
     }

@@ -47,7 +47,7 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         cv.showsVerticalScrollIndicator = false
         cv.register(ArtistCell.self, forCellWithReuseIdentifier: cellId)
         cv.showsVerticalScrollIndicator = false
-        cv.backgroundColor = .white
+        cv.backgroundColor = .transparent
         cv.isPagingEnabled = false
         cv.sizeToFit()
         cv.isScrollEnabled = true
@@ -62,12 +62,25 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
     }
     
     func setUpViews() {
-        view.backgroundColor = .white
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 218, green: 197, blue: 215).cgColor, UIColor(red: 214, green: 141, blue: 203).cgColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = view.bounds
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
         view.addSubview(searchNavigationView)
         searchNavigationView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: 50))
         
         view.addSubview(collectionView)
         collectionView.anchor(top: searchNavigationView.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: view.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        
     }
     
     // MARK: - Collection View Methods
@@ -85,12 +98,6 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         
         cell.artist = artists[indexPath.row]
         
-        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
-        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
-        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
-        
-        cell.cornerView.backgroundColor = UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
-        
         return cell
     }
     
@@ -99,11 +106,8 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
-        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
-        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
         
-        navigateToArtist(artist: artists[indexPath.row], backgroundColor: UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1))
+        navigateToArtist(artist: artists[indexPath.row])
     }
     
     
@@ -113,11 +117,10 @@ class SearchController: UIViewController, UICollectionViewDelegate, UICollection
         navigationController?.popViewController(animated: true)
     }
     
-    func navigateToArtist(artist: Artist?, backgroundColor: UIColor = .white) {
+    func navigateToArtist(artist: Artist?) {
         if let a = artist {
             let artistController = ArtistController()
             artistController.artist = a
-            artistController.artistColor = backgroundColor
             print(a)
             service.fetchSongs(addTo: a, with: "lookup?id=\(a.id!)&entity=song&limit=20", completion: { (songs) in
                 if songs != nil {

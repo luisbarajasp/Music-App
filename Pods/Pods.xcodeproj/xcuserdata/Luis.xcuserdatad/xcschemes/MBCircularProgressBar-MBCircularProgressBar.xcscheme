@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C10F2462A507878D9B63AB10935ED8E"
-               BuildableName = "Pods_Music.framework"
-               BlueprintName = "Pods-Music"
+               BlueprintIdentifier = "3DA77810BEE331070077B6479447EA78"
+               BuildableName = "MBCircularProgressBar.bundle"
+               BlueprintName = "MBCircularProgressBar-MBCircularProgressBar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C10F2462A507878D9B63AB10935ED8E"
-            BuildableName = "Pods_Music.framework"
-            BlueprintName = "Pods-Music"
+            BlueprintIdentifier = "3DA77810BEE331070077B6479447EA78"
+            BuildableName = "MBCircularProgressBar.bundle"
+            BlueprintName = "MBCircularProgressBar-MBCircularProgressBar"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

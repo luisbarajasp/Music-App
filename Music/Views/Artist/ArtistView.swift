@@ -25,12 +25,6 @@ class ArtistView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
         }
     }
     
-    var artistColor: UIColor = .white {
-        didSet {
-            headerView.backgroundColor = artistColor
-        }
-    }
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .light)
@@ -41,7 +35,7 @@ class ArtistView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
     
     let headerView: UIView = {
         let iv = UIView()
-        
+        iv.backgroundColor = .transparent
         return iv
     }()
     
@@ -67,7 +61,7 @@ class ArtistView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
         cv.showsVerticalScrollIndicator = false
         cv.register(SongCell.self, forCellWithReuseIdentifier: cellId)
         cv.showsVerticalScrollIndicator = false
-        cv.backgroundColor = .white
+        cv.backgroundColor = .transparent
         cv.isPagingEnabled = false
         cv.sizeToFit()
         cv.isScrollEnabled = true
@@ -86,16 +80,16 @@ class ArtistView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func setUpViews() {
-        backgroundColor = .white
+        backgroundColor = .transparent
         
         addSubview(headerView)
-        headerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: CGSize(width: 0, height: 125))
+        headerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: CGSize(width: 0, height: 100))
         
         headerView.addSubview(nameLabel)
-        nameLabel.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+        nameLabel.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0))
         
         addSubview(backButton)
-        backButton.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 0), size: CGSize(width: 30, height: 50))
+        backButton.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 5, left: 20, bottom: 0, right: 0), size: CGSize(width: 30, height: 50))
         
         addSubview(collectionView)
         collectionView.anchor(top: headerView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor)

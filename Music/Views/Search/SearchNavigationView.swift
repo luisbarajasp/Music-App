@@ -44,7 +44,7 @@ class SearchNavigationView: UIView {
     }
     
     func setUpViews() {
-        backgroundColor = .white
+        backgroundColor = UIColor(red: 218, green: 197, blue: 215)
         addSubview(backButton)
         backButton.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 0), size: CGSize(width: 30, height: 0))
         

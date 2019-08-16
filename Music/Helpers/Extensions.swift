@@ -51,9 +51,7 @@ extension UIView{
 
 extension UIColor {
     
-    static let ultraLightBlue = UIColor(hex: 0xebf0f9)
-    
-    static let dgstPurple = UIColor(red: 87, green: 40, blue: 219)
+    static let transparent = UIColor(white: 0, alpha: 0)
     
     convenience init(red: Int, green: Int, blue: Int, alpha: CGFloat = 1.0) {
         assert(red >= 0 && red <= 255, "Invalid red component")

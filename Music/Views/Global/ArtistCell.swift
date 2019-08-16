@@ -49,7 +49,7 @@ class ArtistCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.layer.cornerRadius = 50
+        iv.layer.cornerRadius = 75
         iv.layer.masksToBounds = true
         iv.clipsToBounds = true
         return iv
@@ -89,9 +89,9 @@ class ArtistCell: UICollectionViewCell {
         
         cornerView.addSubview(imageView)
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 80).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
         
         cornerView.addSubview(nameLabel)
         nameLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 30, right: 30))

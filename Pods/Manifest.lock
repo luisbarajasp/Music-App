@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (4.8.2)
+  - MBCircularProgressBar (0.3.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - MBCircularProgressBar
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - MBCircularProgressBar
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  MBCircularProgressBar: 0b795b722a5eb5b0923822f90474e2576a1a7855
 
-PODFILE CHECKSUM: 3d5927d980192dde23d548b35278bea8509ea541
+PODFILE CHECKSUM: 4d1bd6dad9eba575cf5f916d7d6f84168620525d
 
 COCOAPODS: 1.5.3

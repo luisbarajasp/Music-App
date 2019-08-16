@@ -7,4 +7,5 @@ target 'Music' do
 
   # Pods for Music
   pod 'Alamofire', '~> 4.7'
+  pod 'MBCircularProgressBar'
 end

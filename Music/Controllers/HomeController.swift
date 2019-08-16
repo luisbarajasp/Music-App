@@ -33,7 +33,15 @@ class HomeController: UIViewController {
         view.addSubview(homeView)
         homeView.fillSuperview()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor(red: 250, green: 189, blue: 75).cgColor, UIColor(red: 252, green: 231, blue: 148).cgColor]
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = homeView.bounds
         
+        homeView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     // MARK: - Fetch Artists
@@ -76,11 +84,10 @@ class HomeController: UIViewController {
         }
     }
     
-    func navigateToArtist(artist: Artist?, backgroundColor: UIColor = .white) {
+    func navigateToArtist(artist: Artist?) {
         if let a = artist {
             let artistController = ArtistController()
             artistController.artist = a
-            artistController.artistColor = backgroundColor
             
             print(a)
             

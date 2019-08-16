@@ -37,6 +37,28 @@ class HomeCollectionHeaderCell: UICollectionReusableView, UITextFieldDelegate {
         return tf
     }()
     
+    let cornerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor(hex: 0xF9A200)
+        return view
+    }()
+    
+    let containerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.layer.shadowColor = UIColor.darkGray.cgColor
+        view.layer.shadowOffset = CGSize(width: 5.0, height: 5.0)
+        view.layer.shadowRadius = 10.0
+        view.layer.shadowOpacity = 0.2
+        view.layer.masksToBounds = false
+        view.clipsToBounds = false
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -47,8 +69,15 @@ class HomeCollectionHeaderCell: UICollectionReusableView, UITextFieldDelegate {
     }
     
     func setUpViews() {
-        backgroundColor = .white
-        addSubview(searchTextField)
+        backgroundColor = .transparent
+        
+        addSubview(containerView)
+        containerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 10, bottom: 5, right: 10))
+        
+        containerView.addSubview(cornerView)
+        cornerView.fillSuperview()
+        
+        cornerView.addSubview(searchTextField)
         searchTextField.fillSuperview()
         
     }

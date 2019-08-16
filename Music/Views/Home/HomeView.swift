@@ -41,7 +41,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     let statusBarBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 250, green: 189, blue: 75)
         return view
     }()
     
@@ -67,6 +67,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         cv.sizeToFit()
         cv.isScrollEnabled = true
         cv.contentInset = UIEdgeInsets(top: 100, left: 6, bottom: 0, right: 6)
+        cv.backgroundColor = .transparent
         
         return cv
     }()
@@ -84,7 +85,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func setUpViews() {
-        
+                
         addSubview(collectionView)
         collectionView.anchor(top: safeAreaLayoutGuide.topAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor)
         
@@ -123,29 +124,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ArtistCell
         
-//        cell.imageView.image = UIImage(named: "art1")
-        
-//        cell.genreLabel.text = artists[indexPath.row].genre
-//        cell.nameLabel.text = artists[indexPath.row].name
-        
         cell.artist = artists[indexPath.row]
-        
-        // apply background to cell
-        /*let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor(red: 145, green: 97, blue: 250).cgColor, UIColor(red: 100, green: 77, blue: 200).cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer.locations = [0, 1]
-        gradientLayer.frame = cell.cornerView.bounds
-        gradientLayer.borderWidth = cell.cornerView.layer.borderWidth
-        gradientLayer.cornerRadius = cell.cornerView.layer.cornerRadius
-        
-        cell.cornerView.layer.insertSublayer(gradientLayer, at: 0)*/
-        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
-        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
-        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
-        
-        cell.cornerView.backgroundColor = UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
         
         return cell
     }
@@ -178,11 +157,7 @@ class HomeView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let red: CGFloat = CGFloat(bgColors[0]) - (CGFloat(indexPath.row) * 5)
-        let green: CGFloat = CGFloat(bgColors[1] - indexPath.row)
-        let blue: CGFloat = CGFloat(bgColors[2]) + (CGFloat(indexPath.row) * 4)
-        
-        controller.navigateToArtist(artist: artists[indexPath.row], backgroundColor: UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1))
+        controller.navigateToArtist(artist: artists[indexPath.row])
     }
     
     // MARK: - ScrollView DidScroll
