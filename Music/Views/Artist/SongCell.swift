@@ -78,8 +78,14 @@ class SongCell: UICollectionViewCell {
     }
     
     func setUpViews() {
+        
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
+        clipsToBounds = true
+        backgroundColor = .white
+        
         addSubview(imageView)
-        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 0), size: CGSize(width: 60, height: 0))
+        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, size: CGSize(width: 60, height: 0))
         
         addSubview(progressView)
         progressView.anchor(top: imageView.topAnchor, leading: nil, bottom: imageView.bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 20), size: CGSize(width: 50, height: 0))
@@ -87,7 +93,7 @@ class SongCell: UICollectionViewCell {
         addSubview(playPreviewButton)
         playPreviewButton.centerXAnchor.constraint(equalTo: progressView.centerXAnchor).isActive = true
         playPreviewButton.centerYAnchor.constraint(equalTo: progressView.centerYAnchor).isActive = true
-        playPreviewButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        playPreviewButton.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         playPreviewButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
         
         
