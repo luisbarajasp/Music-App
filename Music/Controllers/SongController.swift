@@ -109,9 +109,14 @@ class SongController: UIViewController {
             if let duration = self.player?.currentItem?.duration {
                 let duration = CMTimeGetSeconds(duration), time = CMTimeGetSeconds(time)
                 let progress = Float(time/duration)
-                if progress >= 0 {
+                
+                self.songView.progressSlider.value = Float(time)
+                
+                if progress >= 1 {
                     
-                    self.songView.progressSlider.value = Float(time)
+                    
+                    self.songView.restart()
+                    
                     
                 }
             }

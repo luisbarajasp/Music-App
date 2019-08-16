@@ -175,6 +175,12 @@ class SongView: UIView {
         
     }
     
+    func restart() {
+        progressSlider.value = 0
+        isPlaying = false
+        playButton.setImage(UIImage(named: "play"), for: .normal)
+    }
+    
     @objc
     func favButtonPressed() {
         
