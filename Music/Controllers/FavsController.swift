@@ -79,6 +79,12 @@ class FavsController: UIViewController {
                 song.setValue(fav, forKey: "isFav")
                 
                 try context.save()
+                
+                if let index = favsView.songs.firstIndex(of: song) {
+                    favsView.songs.remove(at: index)
+                }
+                
+                favsView.collectionView.reloadData()
             }
         }
         catch let error as NSError {

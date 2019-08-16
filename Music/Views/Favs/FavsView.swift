@@ -13,6 +13,7 @@ class FavsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     var songs: [Song] = [] {
         didSet{
+            setUpViews()
             collectionView.reloadData()
         }
     }
@@ -63,6 +64,16 @@ class FavsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         return cv
     }()
     
+    let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .light)
+        label.text = "You don't have any favorited song yet, to select one press the heat next to it."
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.textAlignment = .center
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -86,6 +97,15 @@ class FavsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
         
         addSubview(collectionView)
         collectionView.anchor(top: headerView.bottomAnchor, leading: safeAreaLayoutGuide.leadingAnchor, bottom: bottomAnchor, trailing: safeAreaLayoutGuide.trailingAnchor)
+        
+        if(songs.count < 1) {
+            addSubview(emptyLabel)
+            emptyLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+            emptyLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 40))
+        }else{
+            emptyLabel.removeFromSuperview()
+        }
+        
     }
     
     @objc
@@ -118,5 +138,11 @@ class FavsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print(indexPath.row)
+    }
+    
+    // MARK: - Update favs when removing one
+    func removeSongFromCollectionView(song: Song) {
+        
+        
     }
 }

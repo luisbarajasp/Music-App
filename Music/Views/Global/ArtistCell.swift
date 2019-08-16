@@ -91,7 +91,7 @@ class ArtistCell: UICollectionViewCell {
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 30).isActive = true
         
         cornerView.addSubview(nameLabel)
         nameLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: UIEdgeInsets(top: 0, left: 30, bottom: 30, right: 30))
