@@ -17,11 +17,20 @@ class HomeController: UIViewController {
         return view
     }()
     
+    lazy var favsButton: FavsButton = {
+        let b = FavsButton()
+        b.controller = self
+        return b
+    }()
+    
     let service = APIService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+//        clearSongs()
+//        clearArtists()
         
         setUpViews()
         fetchArtists()
@@ -32,6 +41,9 @@ class HomeController: UIViewController {
         
         view.addSubview(homeView)
         homeView.fillSuperview()
+        
+        view.addSubview(favsButton)
+        favsButton.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 20), size: CGSize(width: 70, height: 70))
         
     }
     
@@ -98,6 +110,10 @@ class HomeController: UIViewController {
                 }
             })
         }
+    }
+    
+    func presentFavsController() {
+        present(FavsController(), animated: true, completion: nil)
     }
 
     // MARK: - clearData from CoreData for debugging

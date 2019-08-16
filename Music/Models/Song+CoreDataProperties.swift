@@ -17,14 +17,15 @@ extension Song {
         return NSFetchRequest<Song>(entityName: "Song")
     }
 
-    @NSManaged public var id: String?
-    @NSManaged public var name: String?
-    @NSManaged public var previewUrl: String?
-    @NSManaged public var url: String?
-    @NSManaged public var imageUrl: String?
     @NSManaged public var collectionName: String?
     @NSManaged public var duration: Float
+    @NSManaged public var id: String?
+    @NSManaged public var imageUrl: String?
+    @NSManaged public var name: String?
     @NSManaged public var previewDuration: Float
+    @NSManaged public var previewUrl: String?
+    @NSManaged public var url: String?
+    @NSManaged public var isFav: Bool
     @NSManaged public var artist: Artist?
 
 }

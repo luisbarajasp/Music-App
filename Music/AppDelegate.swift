@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
-        let navigationController = UINavigationController(rootViewController: HomeController())
+        let navigationController = ContainerController(rootViewController: HomeController())
         navigationController.navigationBar.isHidden = true
         navigationController.navigationBar.isTranslucent = true
         

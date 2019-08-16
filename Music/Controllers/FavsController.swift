@@ -1,5 +1,5 @@
 //
-//  ArtistController.swift
+//  FavsController.swift
 //  Music
 //
 //  Created by Luis Eduardo Barajas Perez on 8/15/19.
@@ -9,47 +9,59 @@
 import UIKit
 import CoreData
 
-class ArtistController: UIViewController {
-    var artist: Artist? {
-        didSet {
-            artistView.artist = artist
-        }
-    }
+class FavsController: UIViewController {
     
-    var songs: [Song] = [] {
-        didSet {
-            artistView.songs = songs
-        }
-    }
-    
-    lazy var artistView: ArtistView = {
-        let view = ArtistView()
+    lazy var favsView: FavsView = {
+        let view = FavsView()
         view.controller = self
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchFavs()
+        
+        
         setUpViews()
+        
     }
     
     func setUpViews() {
-        
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor(red: 197, green: 203, blue: 216).cgColor, UIColor(red: 120, green: 150, blue: 211).cgColor]
+        gradientLayer.colors = [UIColor(red: 234, green: 175, blue: 175).cgColor, UIColor(red: 234, green: 110, blue: 110).cgColor]
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = view.bounds
         
         view.layer.insertSublayer(gradientLayer, at: 0)
         
-        view.addSubview(artistView)
-        artistView.fillSuperview()
+        view.addSubview(favsView)
+        favsView.fillSuperview()
+    }
+    
+    func fetchFavs() {
+        let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Song")
+        let predicate = NSPredicate(format: "isFav = \(NSNumber(value:true))")
+        
+        fetchRequest.predicate = predicate
+        
+        do {
+            
+            let results = try context.fetch(fetchRequest) as! [Song]
+            favsView.songs = results
+            
+        } catch let error as NSError {
+            print("Could not fetch favs \(error), \(error.userInfo)")
+        }
+        
     }
     
     // MARK: - Callback methods
     
-    func navigationBackPressed() {
-        navigationController?.popViewController(animated: true)
+    func closePressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     func setSongFav(id: String, fav: Bool) {

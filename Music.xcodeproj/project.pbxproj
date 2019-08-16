@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5FE0259873CFC1C4CD5E4518 /* Pods_Music.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB11F5605C3172DCB280D522 /* Pods_Music.framework */; };
+		A08E2CE823064DE900B9C7AD /* SongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CE723064DE900B9C7AD /* SongController.swift */; };
+		A08E2CEB23064E3900B9C7AD /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CEA23064E3900B9C7AD /* SongView.swift */; };
+		A08E2CED230654EC00B9C7AD /* FavsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CEC230654EC00B9C7AD /* FavsButton.swift */; };
+		A08E2CEF230656D300B9C7AD /* FavsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CEE230656D300B9C7AD /* FavsController.swift */; };
+		A08E2CF123065AB700B9C7AD /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CF023065AB700B9C7AD /* ContainerController.swift */; };
+		A08E2CF423065B9000B9C7AD /* FavsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08E2CF323065B9000B9C7AD /* FavsView.swift */; };
 		A09C2EA723060354005EF4DE /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09C2EA623060354005EF4DE /* SongCell.swift */; };
 		A0B548D72305F2E9009B1637 /* ArtistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B548D62305F2E9009B1637 /* ArtistController.swift */; };
 		A0B548DB2305F561009B1637 /* ArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B548DA2305F561009B1637 /* ArtistView.swift */; };
@@ -33,6 +39,12 @@
 
 /* Begin PBXFileReference section */
 		86FA1866AB5C981284F0D6AD /* Pods-Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Music/Pods-Music.debug.xcconfig"; sourceTree = "<group>"; };
+		A08E2CE723064DE900B9C7AD /* SongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongController.swift; sourceTree = "<group>"; };
+		A08E2CEA23064E3900B9C7AD /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		A08E2CEC230654EC00B9C7AD /* FavsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsButton.swift; sourceTree = "<group>"; };
+		A08E2CEE230656D300B9C7AD /* FavsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsController.swift; sourceTree = "<group>"; };
+		A08E2CF023065AB700B9C7AD /* ContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		A08E2CF323065B9000B9C7AD /* FavsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavsView.swift; sourceTree = "<group>"; };
 		A09C2EA623060354005EF4DE /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		A0B548D62305F2E9009B1637 /* ArtistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistController.swift; sourceTree = "<group>"; };
 		A0B548DA2305F561009B1637 /* ArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistView.swift; sourceTree = "<group>"; };
@@ -80,11 +92,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A08E2CE923064E3100B9C7AD /* Song */ = {
+			isa = PBXGroup;
+			children = (
+				A08E2CEA23064E3900B9C7AD /* SongView.swift */,
+			);
+			path = Song;
+			sourceTree = "<group>";
+		};
+		A08E2CF223065B8100B9C7AD /* Favs */ = {
+			isa = PBXGroup;
+			children = (
+				A08E2CF323065B9000B9C7AD /* FavsView.swift */,
+			);
+			path = Favs;
+			sourceTree = "<group>";
+		};
 		A0B548D92305F550009B1637 /* Artist */ = {
 			isa = PBXGroup;
 			children = (
 				A0B548DA2305F561009B1637 /* ArtistView.swift */,
-				A09C2EA623060354005EF4DE /* SongCell.swift */,
 			);
 			path = Artist;
 			sourceTree = "<group>";
@@ -136,9 +163,12 @@
 		A0C8D5552304B4AA002BAA79 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A08E2CF023065AB700B9C7AD /* ContainerController.swift */,
 				A0C8D53F2304B3C9002BAA79 /* HomeController.swift */,
 				A0C8D55D2304D33E002BAA79 /* SearchController.swift */,
 				A0B548D62305F2E9009B1637 /* ArtistController.swift */,
+				A08E2CE723064DE900B9C7AD /* SongController.swift */,
+				A08E2CEE230656D300B9C7AD /* FavsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +188,8 @@
 		A0C8D5572304B4BA002BAA79 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A08E2CF223065B8100B9C7AD /* Favs */,
+				A08E2CE923064E3100B9C7AD /* Song */,
 				A0B548D92305F550009B1637 /* Artist */,
 				A0C8D5642305021D002BAA79 /* Global */,
 				A0C8D55F2304D364002BAA79 /* Search */,
@@ -171,6 +203,7 @@
 			children = (
 				A0C8D55B2304C1AD002BAA79 /* HomeCollectionHeaderCell.swift */,
 				A0C8D5622304DF95002BAA79 /* HomeView.swift */,
+				A08E2CEC230654EC00B9C7AD /* FavsButton.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -186,6 +219,7 @@
 		A0C8D5642305021D002BAA79 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				A09C2EA623060354005EF4DE /* SongCell.swift */,
 				A0C8D56523050229002BAA79 /* ArtistCell.swift */,
 			);
 			path = Global;
@@ -331,13 +365,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0C8D57823051583002BAA79 /* Song+CoreDataClass.swift in Sources */,
+				A08E2CEF230656D300B9C7AD /* FavsController.swift in Sources */,
 				A0C8D56923050DCC002BAA79 /* APIService.swift in Sources */,
+				A08E2CED230654EC00B9C7AD /* FavsButton.swift in Sources */,
 				A0B548DB2305F561009B1637 /* ArtistView.swift in Sources */,
 				A0C8D55C2304C1AD002BAA79 /* HomeCollectionHeaderCell.swift in Sources */,
 				A0C8D5592304B5A2002BAA79 /* CoreDataStack.swift in Sources */,
+				A08E2CEB23064E3900B9C7AD /* SongView.swift in Sources */,
+				A08E2CE823064DE900B9C7AD /* SongController.swift in Sources */,
 				A0C8D5402304B3C9002BAA79 /* HomeController.swift in Sources */,
 				A0C8D55E2304D33E002BAA79 /* SearchController.swift in Sources */,
 				A0C8D53E2304B3C9002BAA79 /* AppDelegate.swift in Sources */,
+				A08E2CF423065B9000B9C7AD /* FavsView.swift in Sources */,
 				A0C8D5632304DF95002BAA79 /* HomeView.swift in Sources */,
 				A0C8D5462304B3C9002BAA79 /* Music.xcdatamodeld in Sources */,
 				A0C8D57923051583002BAA79 /* Song+CoreDataProperties.swift in Sources */,
@@ -346,6 +385,7 @@
 				A0B548D72305F2E9009B1637 /* ArtistController.swift in Sources */,
 				A0C8D5542304B422002BAA79 /* Extensions.swift in Sources */,
 				A0C8D56623050229002BAA79 /* ArtistCell.swift in Sources */,
+				A08E2CF123065AB700B9C7AD /* ContainerController.swift in Sources */,
 				A09C2EA723060354005EF4DE /* SongCell.swift in Sources */,
 				A0C8D5612304D374002BAA79 /* SearchNavigationView.swift in Sources */,
 			);
