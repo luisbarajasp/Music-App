@@ -43,11 +43,16 @@ class SongCell: UICollectionViewCell {
                 imageView.loadImageUsingCacheWithURLString(s.imageUrl!, placeHolder: UIImage(named: "art1"))
                 nameLabel.text = s.name
                 
+                var origImage: UIImage!
+                
                 if song!.isFav {
-                    let origImage = UIImage(named: "heart-filled")
-                    let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
-                    favButton.setImage(tintedImage, for: .normal)
+                    origImage = UIImage(named: "heart-filled")
+                }else{
+                    origImage = UIImage(named: "heart")
                 }
+                
+                let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+                favButton.setImage(tintedImage, for: .normal)
             }
         }
     }
