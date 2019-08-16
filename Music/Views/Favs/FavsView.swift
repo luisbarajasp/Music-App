@@ -137,12 +137,7 @@ class FavsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print(indexPath.row)
+        controller.navigateToSong(song: songs[indexPath.row])
     }
     
-    // MARK: - Update favs when removing one
-    func removeSongFromCollectionView(song: Song) {
-        
-        
-    }
 }

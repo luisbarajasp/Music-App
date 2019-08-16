@@ -27,6 +27,12 @@ class FavsController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        fetchFavs()
+    }
+    
     func setUpViews() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor(red: 234, green: 175, blue: 175).cgColor, UIColor(red: 234, green: 110, blue: 110).cgColor]
@@ -62,6 +68,13 @@ class FavsController: UIViewController {
     
     func closePressed() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func navigateToSong(song: Song) {
+        let songController = SongController()
+        songController.song = song
+        
+        present(songController, animated: true, completion: nil)
     }
     
     func setSongFav(id: String, fav: Bool) {

@@ -33,6 +33,12 @@ class ArtistController: UIViewController {
         setUpViews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        artistView.collectionView.reloadData()
+    }
+    
     func setUpViews() {
         
         let gradientLayer = CAGradientLayer()

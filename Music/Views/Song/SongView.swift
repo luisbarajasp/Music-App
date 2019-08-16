@@ -85,8 +85,9 @@ class SongView: UIView {
     
     lazy var progressSlider: UISlider = {
         let slider = UISlider()
-        slider.maximumValue = 100
+        slider.maximumValue = 1
         slider.minimumValue = 0
+        slider.isContinuous = true
         slider.setValue(0, animated: false)
         slider.addTarget(self, action: #selector(self.changeVlaue(_:)), for: .valueChanged)
         slider.minimumTrackTintColor = .black
@@ -199,9 +200,7 @@ class SongView: UIView {
         }else{
             playButton.setImage(UIImage(named: "pause"), for: .normal)
             
-            if let url = song?.previewUrl {
-                controller.play(urlString: url)
-            }
+            controller.setAudioTime(time: progressSlider.value)
             
         }
         isPlaying = !isPlaying
@@ -209,12 +208,16 @@ class SongView: UIView {
     
     @objc
     func rewindButtonPressed() {
-        
+        controller.setAudioTime(time: progressSlider.value - 2.0)
+        playButton.setImage(UIImage(named: "pause"), for: .normal)
+        isPlaying = true
     }
     
     @objc
     func fastForwardButtonPressed() {
-        
+        controller.setAudioTime(time: progressSlider.value + 2.0)
+        playButton.setImage(UIImage(named: "pause"), for: .normal)
+        isPlaying = true
     }
     
     @objc
@@ -224,6 +227,6 @@ class SongView: UIView {
     
     @objc
     func changeVlaue(_ sender: UISlider) {
-        print("value is" , Int(sender.value));
+        controller.setAudioTime(time: sender.value)
     }
 }

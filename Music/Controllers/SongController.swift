@@ -15,6 +15,18 @@ class SongController: UIViewController {
     var song: Song? {
         didSet {
             songView.song = song
+            if let urlString = song?.previewUrl {
+                let url = URL(string: urlString)
+                let playerItem = AVPlayerItem(url: url!)
+                
+                player = AVPlayer(playerItem: playerItem)
+                let duration : CMTime = playerItem.asset.duration
+                let seconds : Float64 = CMTimeGetSeconds(duration)
+                
+                self.songView.progressSlider.maximumValue = Float(seconds)
+                player?.volume = 1.0
+            }
+            
         }
     }
     
@@ -73,18 +85,37 @@ class SongController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    
+    func setAudioTime(time: Float) {
+//        print(time)
+        
+        let seconds : Int64 = Int64(time)
+        let targetTime:CMTime = CMTimeMake(value: seconds, timescale: 1)
+        
+        player!.seek(to: targetTime)
+        
+        if player!.rate == 0
+        {
+            play()
+        }
+        
+    }
     
     // MARK: - Play song
-    func play(urlString: String) {
-        print(urlString)
+    func play() {
         
-        let url = URL(string: urlString)
-        let playerItem = AVPlayerItem(url: url!)
-        
-        player = AVPlayer(playerItem: playerItem)
-        player?.volume = 1.0
         player?.play()
+        
+        player!.addPeriodicTimeObserver(forInterval: CMTime.init(value: 1, timescale: 1), queue: .main, using: { time in
+            if let duration = self.player?.currentItem?.duration {
+                let duration = CMTimeGetSeconds(duration), time = CMTimeGetSeconds(time)
+                let progress = Float(time/duration)
+                if progress >= 0 {
+                    
+                    self.songView.progressSlider.value = Float(time)
+                    
+                }
+            }
+        })
     }
     
     func pause() {
